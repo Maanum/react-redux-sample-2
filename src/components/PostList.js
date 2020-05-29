@@ -1,9 +1,17 @@
 import React from "react";
 import PostAuthor from "./PostAuthor";
 import { connect } from "react-redux";
-import { postsReceived } from "./actions";
+import { postsReceived } from "../actions";
+import dummyPosts from "./dummyPosts.json";
 
 class PostList extends React.Component {
+  componentDidMount() {
+    // replace with API call
+    this.props.postsReceived(dummyPosts);
+    console.log(this.props);
+    console.log(dummyPosts);
+  }
+
   renderedList = this.props.posts.map((post) => {
     return (
       <div className="comment">

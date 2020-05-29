@@ -1,8 +1,7 @@
 import { combineReducers } from "redux";
-import dummyPosts from "./dummyPosts.json";
 
-const postsReceivedReducer = (posts = dummyPosts, action) => {
-  if (action.type === "postsReceived") {
+const postsReceivedReducer = (posts = [], action) => {
+  if (action.type === "POSTS_RECEIVED") {
     return action.payload;
   }
   return posts;
