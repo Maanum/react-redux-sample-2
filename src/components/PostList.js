@@ -1,12 +1,13 @@
 import React from "react";
+import User from "./User";
 import { connect } from "react-redux";
 import { fetchPosts } from "../actions";
-import { createPortal } from "react-dom";
-import postsReducer from "../reducers/postsReducer";
+import { fetchUsers } from "../actions";
 
 class PostList extends React.Component {
   componentDidMount() {
     this.props.fetchPosts();
+    this.props.fetchUsers();
   }
 
   renderList() {
@@ -18,6 +19,7 @@ class PostList extends React.Component {
             <div className="description">
               <h2>{post.title}</h2>
               <p>{post.body}</p>
+              <User userId={post.userId} />
             </div>
           </div>
         </div>
@@ -31,7 +33,10 @@ class PostList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { posts: state.posts };
+  return {
+    posts: state.posts,
+    users: state.users,
+  };
 };
 
-export default connect(mapStateToProps, { fetchPosts })(PostList);
+export default connect(mapStateToProps, { fetchPosts, fetchUsers })(PostList);
